@@ -1,0 +1,17 @@
+.idea/
+.vscode/
+*.iml
+backend/target/
+frontend/node_modules/
+frontend/dist/
+.env
+*.log
+
+
+# Local configuration and generated artifacts
+.env.*
+!.env.example
+**/*.tsbuildinfo
+DevFlow-Enterprise-*.zip
+.DS_Store
+Thumbs.db
