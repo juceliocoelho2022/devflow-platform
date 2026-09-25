@@ -36,8 +36,8 @@ A interface usa português e mantém uma identidade visual em azul-marinho e azu
 | Projetos e tarefas | Cadastro, listagem e movimentação implementados |
 | Dashboard | Contagens conectadas à API; produtividade e atividades são demonstrativas |
 | Equipes, usuários, relatórios e configurações | Navegação e telas de preparação, sem fluxos completos |
-| Papéis ADMIN, MANAGER e MEMBER | Modelados; restrições por papel ainda precisam ser aplicadas às operações |
-| Testes | Casos de métricas e API no frontend; teste de inicialização do contexto Spring no backend |
+| Papéis ADMIN, MANAGER e MEMBER | Criação restrita a ADMIN/MANAGER; consulta e movimentação para os três papéis |
+| Testes | Métricas e API no frontend; integração de autenticação/permissões e configuração de produção no backend |
 
 ## Executar localmente
 
@@ -94,7 +94,7 @@ O perfil padrão utiliza H2 em memória: os dados são recriados a cada iniciali
 | E-mail | `admin@devflow.com` |
 | Senha | `admin123` |
 
-O inicializador cria contas e tarefas demonstrativas quando não há usuários no banco, inclusive no perfil Docker. Essas credenciais são públicas e servem somente para demonstração. Consulte [SECURITY.md](SECURITY.md) antes de considerar uma implantação pública.
+O inicializador cria contas demonstrativas apenas no perfil `dev` (incluído no Compose local como `dev,docker`). O login não preenche credenciais automaticamente. Em produção, use o perfil `prod` e um banco separado, conforme o [guia de produção](docs/production.md); não publique o Compose local.
 
 ## Arquitetura
 
@@ -118,6 +118,10 @@ portfolio/     Site pessoal estático, independente da aplicação
 A pasta `DevFlow-Enterprise-Professional/` preserva a estrutura inicial do repositório. A aplicação e os comandos deste README utilizam `backend/` e `frontend/` na raiz.
 
 O backend usa Flyway no perfil Docker e Hibernate para criar o esquema H2 local. DTOs separam os contratos HTTP das entidades JPA. A autenticação é stateless; o frontend guarda o token no armazenamento local do navegador.
+
+## Produção
+
+Consulte o [guia de produção](docs/production.md) para configurar JWT, CORS, PostgreSQL e o primeiro administrador. O arquivo `docker-compose.production.yml` separa o ambiente público da demonstração local e requer um proxy HTTPS. O deploy ainda não foi realizado.
 
 ## API
 
@@ -154,8 +158,8 @@ O workflow [CI](.github/workflows/ci.yml) executa testes e build do frontend e `
 - [x] Cadastro de projetos e tarefas, Kanban, busca e filtros.
 - [x] Indicadores de status e progresso por projeto baseados em tarefas.
 - [x] Tratamento de falhas da API no frontend.
-- [ ] Aplicar e testar autorização por papel nas operações.
-- [ ] Restringir o carregamento de dados demonstrativos ao ambiente de desenvolvimento.
+- [x] Aplicar e testar autorização por papel nas operações.
+- [x] Restringir o carregamento de dados demonstrativos ao ambiente de desenvolvimento.
 - [ ] Implementar séries históricas de produtividade e registro real de atividades.
 - [ ] Ampliar testes de integração e testes dos fluxos no navegador.
 - [ ] Implementar os fluxos de equipes e usuários.

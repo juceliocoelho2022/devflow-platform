@@ -47,7 +47,7 @@ Entregar uma primeira versão funcional de uma plataforma para equipes de tecnol
 
 ## Segurança
 
-JWT stateless, senhas com BCrypt, CORS configurável e papéis `ADMIN`, `MANAGER` e `MEMBER`. O usuário de demonstração é criado apenas para desenvolvimento e deve ser substituído antes de produção.
+JWT stateless, senhas com BCrypt, CORS configurável e papéis `ADMIN`, `MANAGER` e `MEMBER`. O usuário de demonstração é criado apenas no perfil dev. Produção utiliza banco separado, perfil prod, chave JWT própria e bootstrap opcional do primeiro administrador. ADMIN e MANAGER podem criar projetos e tarefas; MEMBER pode consultar e movimentar tarefas. Todos acessam o mesmo workspace. Consulte [produção](production.md) para a matriz e a configuração completa.
 
 ## Critérios de aceite
 
