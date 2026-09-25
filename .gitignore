@@ -15,3 +15,5 @@ frontend/dist/
 DevFlow-Enterprise-*.zip
 .DS_Store
 Thumbs.db
+
+!.env.production.example

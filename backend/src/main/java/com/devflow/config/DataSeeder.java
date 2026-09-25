@@ -14,9 +14,11 @@ import java.time.LocalDate;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
+@Profile("dev & !prod")
 public class DataSeeder {
   @Bean CommandLineRunner seed(UserRepository users,ProjectRepository projects,TaskRepository tasks,PasswordEncoder encoder){
     return args->{
