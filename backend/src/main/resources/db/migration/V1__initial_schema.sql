@@ -1,0 +1,25 @@
+CREATE TABLE users (
+  id BIGSERIAL PRIMARY KEY,
+  name VARCHAR(120) NOT NULL,
+  email VARCHAR(180) NOT NULL UNIQUE,
+  password VARCHAR(255) NOT NULL,
+  role VARCHAR(30) NOT NULL
+);
+CREATE TABLE projects (
+  id BIGSERIAL PRIMARY KEY,
+  name VARCHAR(140) NOT NULL,
+  description VARCHAR(500),
+  status VARCHAR(30) NOT NULL,
+  created_at TIMESTAMP NOT NULL
+);
+CREATE TABLE tasks (
+  id BIGSERIAL PRIMARY KEY,
+  title VARCHAR(180) NOT NULL,
+  description VARCHAR(1000),
+  status VARCHAR(30) NOT NULL,
+  priority VARCHAR(30) NOT NULL,
+  project_id BIGINT NOT NULL REFERENCES projects(id),
+  assignee_id BIGINT REFERENCES users(id),
+  due_date DATE,
+  created_at TIMESTAMP NOT NULL
+);
